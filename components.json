@@ -1,0 +1,15 @@
+{
+	"components": [
+		{
+			"id": "datafieldtransport",
+			"type": "VIEW_PLUGIN",
+			"allowMultipleInstances": false,
+			"name": "sb.custom.plugins.datafieldtransport",
+			"propertyEditor": "sb.custom.plugins.datafieldtransport.builder.PropertyEditor",
+			"i18n": "sb.custom.plugins.datafieldtransport.i18n.i18n",
+			"productionProcessEnabled": false,
+			"productionProcessTitle": "datafieldtransport",
+			"supportedPodTypes": ["OTHER"]
+		}
+	]
+}

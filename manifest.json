@@ -1,0 +1,50 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "sb.custom.plugins.datafieldtransport",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": ["en"],
+			"fallbackLocale": "en"
+		},
+		"applicationVersion": { "version": "1.0.0" },
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"dataSources": {
+			"dataFieldSource": {
+				"uri": "/api/",
+				"type": "HTTP"
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": { "icon": "", "favIcon": "", "phone": "", "phone@2": "", "tablet": "", "tablet@2": "" },
+		"deviceTypes": { "desktop": true, "tablet": true, "phone": false }
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "sb.custom.plugins.datafieldtransport.view.MainView",
+			"type": "XML",
+			"async": true,
+			"id": "MainView"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": { "sap.ui.core": {}, "sap.m": {}, "sap.ui.layout": {} }
+		},
+		"contentDensities": { "compact": true, "cozy": false },
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": { "bundleName": "sb.custom.plugins.datafieldtransport.i18n.i18n" }
+			}
+		},
+		"resources": {
+			"css": [{ "uri": "css/style.css" }],
+			"js": []
+		}
+	}
+}

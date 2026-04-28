@@ -1,0 +1,568 @@
+/* ═══════════════════════════════════════════════════════════════
+   POD Transport — Professional UI
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Variables ──────────────────────────────────────────────── */
+:root {
+    --pt-blue:       #0070F2;
+    --pt-blue-dk:    #0057BB;
+    --pt-blue-lt:    #EAF3FF;
+    --pt-green:      #107E3E;
+    --pt-green-bg:   #F0FAF3;
+    --pt-amber:      #C44E00;
+    --pt-amber-bg:   #FFF3E8;
+    --pt-purple:     #6A28C8;
+    --pt-purple-bg:  #F5EDFF;
+    --pt-gray-50:    #F7F8F9;
+    --pt-gray-100:   #EDF0F2;
+    --pt-gray-200:   #D5D9DC;
+    --pt-gray-400:   #8C949B;
+    --pt-gray-600:   #505A61;
+    --pt-gray-900:   #23262A;
+    --pt-white:      #FFFFFF;
+    --pt-radius:     8px;
+    --pt-radius-sm:  5px;
+    --pt-shadow:     0 2px 8px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.06);
+    --pt-shadow-md:  0 6px 20px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* ── Main panel background ──────────────────────────────────── */
+#panelPlugin > .sapMPanelContent {
+    background: var(--pt-gray-50) !important;
+    padding: 0 !important;
+}
+
+/* ── Header bar ─────────────────────────────────────────────── */
+.ptHeader.sapMTB {
+    background: var(--pt-white) !important;
+    border-bottom: 3px solid var(--pt-blue) !important;
+    box-shadow: 0 2px 10px rgba(0,112,242,0.10) !important;
+    padding: 0 1rem !important;
+    gap: 10px;
+}
+
+.ptHeaderIcon.sapUiIcon {
+    font-size: 1.2rem !important;
+    color: var(--pt-blue) !important;
+}
+
+.ptHeaderTitle.sapMTitle {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--pt-gray-900) !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.ptLayout {
+    height: calc(100% - 3rem) !important;
+}
+
+/* ── Left list panel ────────────────────────────────────────── */
+.ptListPanel.sapMPanel {
+    background: var(--pt-white) !important;
+    border: none !important;
+    border-right: 1px solid var(--pt-gray-100) !important;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.04) !important;
+}
+
+.ptListPanel .sapMPanelWrappingDiv {
+    height: 100% !important;
+}
+
+.ptListHeader.sapMTB {
+    background: var(--pt-gray-50) !important;
+    border-bottom: 1px solid var(--pt-gray-100) !important;
+    padding: 0 12px !important;
+    gap: 8px;
+}
+
+.ptSectionIcon.sapUiIcon {
+    font-size: 0.9rem !important;
+    color: var(--pt-blue) !important;
+}
+
+.ptSectionTitle.sapMTitle {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: var(--pt-gray-400) !important;
+}
+
+/* ── Type filter ────────────────────────────────────────────── */
+.ptTypeFilter.sapMSlt {
+    border: 1.5px solid var(--pt-gray-200) !important;
+    border-radius: var(--pt-radius-sm) !important;
+    font-size: 0.78rem !important;
+}
+
+/* ── List items ─────────────────────────────────────────────── */
+.ptListItem.sapMLIB {
+    padding: 10px 14px !important;
+    border-left: 3px solid transparent !important;
+    transition: background 0.15s, border-color 0.15s !important;
+    border-bottom: 1px solid var(--pt-gray-100) !important;
+}
+
+.ptListItem.sapMLIB:hover {
+    background: var(--pt-blue-lt) !important;
+    border-left-color: var(--pt-blue) !important;
+}
+
+.ptListItem.sapMLIBSelected,
+.ptListItem.sapMLIBSelected:hover {
+    background: var(--pt-blue-lt) !important;
+    border-left-color: var(--pt-blue) !important;
+}
+
+.ptListItem .sapMSLITitle {
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: var(--pt-gray-900) !important;
+}
+
+.ptListItem.sapMLIBSelected .sapMSLITitle {
+    color: var(--pt-blue-dk) !important;
+}
+
+.ptListItem .sapMSLIDescription {
+    font-size: 0.74rem !important;
+    color: var(--pt-gray-400) !important;
+}
+
+/* Type badge pills */
+.ptListItem .sapMSLIInfo {
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.07em !important;
+    text-transform: uppercase !important;
+    padding: 2px 8px !important;
+    border-radius: 20px !important;
+    line-height: 1.6 !important;
+}
+
+.ptListItem .sapMSLIInfoSuccess  { background: var(--pt-green-bg)  !important; color: var(--pt-green)  !important; }
+.ptListItem .sapMSLIInfoWarning  { background: var(--pt-amber-bg)  !important; color: var(--pt-amber)  !important; }
+.ptListItem .sapMSLIInfoNeutral  { background: var(--pt-gray-100)  !important; color: var(--pt-gray-400) !important; }
+.ptListItem .sapMSLIInfoInformation { background: var(--pt-blue-lt) !important; color: var(--pt-blue-dk) !important; }
+
+/* ── Right detail area ──────────────────────────────────────── */
+.ptDetailArea {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    background: var(--pt-gray-50) !important;
+}
+
+/* ── Empty state ────────────────────────────────────────────── */
+.ptEmptyState {
+    flex: 1 !important;
+    min-height: 400px !important;
+}
+
+.ptEmptyIcon.sapUiIcon {
+    font-size: 4rem !important;
+    color: var(--pt-gray-200) !important;
+    margin-bottom: 1rem !important;
+}
+
+.ptEmptyTitle.sapMTitle {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: var(--pt-gray-400) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.ptEmptySubtitle.sapMText {
+    font-size: 0.85rem !important;
+    color: var(--pt-gray-400) !important;
+    max-width: 280px !important;
+    text-align: center !important;
+}
+
+/* ── Hero banner ────────────────────────────────────────────── */
+.ptDetailContent {
+    padding: 0 !important;
+}
+
+.ptHeroBanner.sapMHBox {
+    background: var(--pt-white) !important;
+    border-bottom: 1px solid var(--pt-gray-100) !important;
+    padding: 1.25rem 1.5rem !important;
+    gap: 16px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+}
+
+.ptHeroIcon.sapMVBox {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    background: var(--pt-blue-lt) !important;
+    border-radius: var(--pt-radius) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ptHeroIcon .sapUiIcon {
+    font-size: 1.5rem !important;
+    color: var(--pt-blue) !important;
+}
+
+.ptHeroText {
+    flex: 1 !important;
+    gap: 3px !important;
+}
+
+.ptHeroPodId.sapMTitle {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: var(--pt-gray-900) !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.2 !important;
+}
+
+.ptHeroDesc.sapMText {
+    font-size: 0.82rem !important;
+    color: var(--pt-gray-400) !important;
+    font-weight: 400 !important;
+}
+
+/* ── Export button ──────────────────────────────────────────── */
+.ptExportBtn.sapMBtn .sapMBtnInner {
+    background: var(--pt-blue) !important;
+    color: var(--pt-white) !important;
+    border: none !important;
+    border-radius: var(--pt-radius) !important;
+    padding: 0 20px !important;
+    height: 2.25rem !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    box-shadow: 0 2px 10px rgba(0,112,242,0.30) !important;
+    transition: all 0.18s ease !important;
+    letter-spacing: 0.01em !important;
+}
+
+.ptExportBtn.sapMBtn:hover .sapMBtnInner {
+    background: var(--pt-blue-dk) !important;
+    box-shadow: 0 4px 16px rgba(0,112,242,0.42) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ── Card grid ──────────────────────────────────────────────── */
+.ptCardGrid.sapMHBox {
+    padding: 1.25rem 1.5rem !important;
+    gap: 1.25rem !important;
+    align-items: flex-start !important;
+    flex-wrap: wrap !important;
+}
+
+/* ── Cards ──────────────────────────────────────────────────── */
+.ptCard.sapMVBox {
+    background: var(--pt-white) !important;
+    border: 1px solid var(--pt-gray-100) !important;
+    border-radius: var(--pt-radius) !important;
+    box-shadow: var(--pt-shadow) !important;
+    overflow: hidden !important;
+    flex: 1 !important;
+    min-width: 300px !important;
+}
+
+.ptCardHeader.sapMHBox {
+    padding: 0.85rem 1.1rem !important;
+    border-bottom: 1px solid var(--pt-gray-100) !important;
+    background: var(--pt-gray-50) !important;
+    gap: 8px !important;
+    align-items: center !important;
+}
+
+.ptCardIcon.sapUiIcon {
+    font-size: 0.95rem !important;
+    color: var(--pt-blue) !important;
+}
+
+.ptCardTitle.sapMTitle {
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.07em !important;
+    color: var(--pt-gray-600) !important;
+}
+
+.ptCardBody.sapMVBox {
+    padding: 1.1rem !important;
+    gap: 0 !important;
+}
+
+/* ── Metadata rows ──────────────────────────────────────────── */
+.ptMetaRow.sapMHBox {
+    gap: 0 !important;
+    margin-bottom: 0.9rem !important;
+}
+
+.ptMetaCell.sapMVBox {
+    flex: 1 !important;
+    min-width: 0 !important;
+    gap: 3px !important;
+}
+
+.ptMetaCellFull.sapMVBox {
+    flex: 2 !important;
+}
+
+.ptMetaLabel.sapMLabel {
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: var(--pt-gray-400) !important;
+    line-height: 1.4 !important;
+}
+
+.ptMetaValue.sapMText {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: var(--pt-gray-900) !important;
+    line-height: 1.4 !important;
+}
+
+/* ── Import card specifics ──────────────────────────────────── */
+.ptImportCard {
+    min-width: 360px !important;
+}
+
+.ptImportStrip.sapMMsgStrip {
+    border-radius: var(--pt-radius-sm) !important;
+    border: none !important;
+    border-left: 3px solid var(--pt-blue) !important;
+    margin-bottom: 1rem !important;
+    font-size: 0.8rem !important;
+}
+
+.ptImportForm {
+    margin-bottom: 0.75rem !important;
+}
+
+.ptImportForm .sapMLabel {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: var(--pt-gray-600) !important;
+    margin-bottom: 3px !important;
+}
+
+.ptImportForm .sapMInputBase {
+    border: 1.5px solid var(--pt-gray-200) !important;
+    border-radius: var(--pt-radius-sm) !important;
+    transition: border 0.15s, box-shadow 0.15s !important;
+}
+
+.ptImportForm .sapMInputBase:hover {
+    border-color: var(--pt-blue) !important;
+}
+
+.ptImportForm .sapMInputBaseFocused {
+    border-color: var(--pt-blue) !important;
+    box-shadow: 0 0 0 3px rgba(0,112,242,0.12) !important;
+}
+
+/* ── File row ───────────────────────────────────────────────── */
+.ptFileRow.sapMHBox {
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 0.85rem !important;
+    padding: 0.6rem 0.8rem !important;
+    background: var(--pt-gray-50) !important;
+    border: 1.5px dashed var(--pt-gray-200) !important;
+    border-radius: var(--pt-radius-sm) !important;
+}
+
+.ptBrowseBtn.sapMBtn .sapMBtnInner {
+    border: 1.5px solid var(--pt-blue) !important;
+    border-radius: var(--pt-radius-sm) !important;
+    color: var(--pt-blue) !important;
+    background: var(--pt-blue-lt) !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    transition: all 0.15s !important;
+}
+
+.ptBrowseBtn.sapMBtn:hover .sapMBtnInner {
+    background: var(--pt-blue) !important;
+    color: var(--pt-white) !important;
+}
+
+.ptFileName.sapMText {
+    font-size: 0.8rem !important;
+    color: var(--pt-blue-dk) !important;
+    font-weight: 500 !important;
+    font-style: italic !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* ── Import button ──────────────────────────────────────────── */
+.ptImportBtn.sapMBtn {
+    width: 100% !important;
+}
+
+.ptImportBtn.sapMBtn .sapMBtnInner {
+    background: var(--pt-blue) !important;
+    color: var(--pt-white) !important;
+    border: none !important;
+    border-radius: var(--pt-radius-sm) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    height: 2.25rem !important;
+    width: 100% !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0,112,242,0.25) !important;
+    transition: all 0.18s !important;
+}
+
+.ptImportBtn.sapMBtn:hover .sapMBtnInner {
+    background: var(--pt-blue-dk) !important;
+    box-shadow: 0 4px 14px rgba(0,112,242,0.38) !important;
+    transform: translateY(-1px) !important;
+}
+
+.ptImportBtn.sapMBtn.sapMBtnDisabled .sapMBtnInner {
+    background: var(--pt-gray-200) !important;
+    color: var(--pt-gray-400) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* ── Search field ───────────────────────────────────────────── */
+.sapMSF {
+    border: 1.5px solid var(--pt-gray-200) !important;
+    border-radius: var(--pt-radius-sm) !important;
+    background: var(--pt-white) !important;
+    transition: border 0.15s !important;
+}
+
+.sapMSF:focus-within,
+.sapMSFFocus {
+    border-color: var(--pt-blue) !important;
+    box-shadow: 0 0 0 3px rgba(0,112,242,0.10) !important;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--pt-gray-200); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--pt-gray-400); }
+
+/* ── Hero row (inside details card) ────────────────────────── */
+.ptHeroRow.sapMHBox {
+    align-items: center !important;
+    gap: 14px !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 1rem !important;
+    border-bottom: 1px solid var(--pt-gray-100) !important;
+}
+
+.ptHeroIcon.sapMVBox {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    background: var(--pt-blue-lt) !important;
+    border-radius: var(--pt-radius) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ptHeroIcon .sapUiIcon {
+    font-size: 1.4rem !important;
+    color: var(--pt-blue) !important;
+}
+
+/* ── Export button — full width at bottom of details card ──── */
+.ptExportBtn.sapMBtn {
+    width: 100% !important;
+    margin-top: auto !important;
+}
+
+.ptExportBtn.sapMBtn .sapMBtnInner {
+    background: var(--pt-blue) !important;
+    color: var(--pt-white) !important;
+    border: none !important;
+    border-radius: var(--pt-radius-sm) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    height: 2.4rem !important;
+    width: 100% !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 10px rgba(0,112,242,0.28) !important;
+    transition: all 0.18s ease !important;
+    margin-top: 1rem !important;
+}
+
+.ptExportBtn.sapMBtn:hover .sapMBtnInner {
+    background: var(--pt-blue-dk) !important;
+    box-shadow: 0 4px 16px rgba(0,112,242,0.40) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ── Card grid stretches cards to equal height ──────────────── */
+.ptCardGrid.sapMHBox {
+    align-items: stretch !important;
+}
+
+.ptMetaCard.sapMVBox,
+.ptImportCard.sapMVBox {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.ptMetaCard .ptCardBody.sapMVBox {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* ── Field labels for import ────────────────────────────────── */
+.ptFieldLabel.sapMLabel {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.07em !important;
+    color: var(--pt-gray-600) !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 3px !important;
+    display: block !important;
+}
+
+.ptFieldInput.sapMInputBase {
+    border: 1.5px solid var(--pt-gray-200) !important;
+    border-radius: var(--pt-radius-sm) !important;
+    transition: border 0.15s, box-shadow 0.15s !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.ptFieldInput.sapMInputBase:hover {
+    border-color: var(--pt-blue) !important;
+}
+
+.ptFieldInput.sapMInputBaseFocused {
+    border-color: var(--pt-blue) !important;
+    box-shadow: 0 0 0 3px rgba(0,112,242,0.12) !important;
+}
+
+/* Multi-select toolbar */
+.ptSelectToolbar.sapMTB {
+    background: var(--pt-gray-50) !important;
+    border-bottom: 1px solid var(--pt-gray-100) !important;
+    padding: 0 12px !important;
+    min-height: 2.25rem !important;
+}
+
+.ptSelCount.sapMText {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: var(--pt-blue) !important;
+}

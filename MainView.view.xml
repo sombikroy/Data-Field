@@ -1,0 +1,186 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    controllerName="sb.custom.plugins.datafieldtransport.controller.MainView"
+    width="100%"
+    height="100%">
+
+    <Panel
+        id="panelPlugin"
+        width="100%"
+        height="100%"
+        expandable="false"
+        expanded="false"
+        accessibleRole="Region"
+        backgroundDesign="Transparent"
+        class="sapUiNoContentPadding">
+
+        <headerToolbar>
+            <Toolbar height="3rem" class="ptHeader">
+                <Button id="backButton" visible="false" text="{i18n>back.btn}" tooltip="{i18n>back.tooltip}" icon="sap-icon://nav-back" press="onBackPress"/>
+                <core:Icon src="sap-icon://field-group" class="ptHeaderIcon"/>
+                <Title id="headerTitle" text="{i18n>appTitle}" class="ptHeaderTitle"/>
+                <ToolbarSpacer/>
+                <SearchField id="fieldSearchField" width="16rem" placeholder="{i18n>field.search.placeholder}" search="onFieldSearch" liveChange="onFieldSearchLive"/>
+                <Button id="refreshButton" tooltip="{i18n>refresh.tooltip}" icon="sap-icon://refresh" press="onRefreshPress"/>
+                <Button id="closeButton" visible="false" tooltip="{i18n>close.tooltip}" icon="sap-icon://decline" press="onClosePress"/>
+            </Toolbar>
+        </headerToolbar>
+
+        <content>
+            <l:HorizontalLayout width="100%" allowWrapping="false" class="ptLayout">
+
+                <!-- LEFT: Field List -->
+                <Panel id="fieldListPanel" width="320px" expandable="false" height="100%" busyIndicatorDelay="0" class="ptListPanel">
+                    <headerToolbar>
+                        <Toolbar height="2.75rem" class="ptListHeader">
+                            <core:Icon src="sap-icon://list" class="ptSectionIcon"/>
+                            <Title text="{i18n>field.list.title}" level="H5" class="ptSectionTitle"/>
+                            <ToolbarSpacer/>
+                            <Select id="fieldTypeFilter" width="8rem" change="onTypeFilterChange" class="ptTypeFilter">
+                                <items>
+                                    <core:Item key=""          text="{i18n>filter.allTypes}"/>
+                                    <core:Item key="TEXT"      text="{i18n>filter.type.text}"/>
+                                    <core:Item key="TEXT_AREA" text="{i18n>filter.type.textarea}"/>
+                                    <core:Item key="NUMBER"    text="{i18n>filter.type.number}"/>
+                                    <core:Item key="LIST"      text="{i18n>filter.type.list}"/>
+                                    <core:Item key="CHECKBOX"  text="{i18n>filter.type.checkbox}"/>
+                                </items>
+                            </Select>
+                        </Toolbar>
+                    </headerToolbar>
+                    <content>
+                        <Toolbar class="ptSelectToolbar">
+                            <CheckBox id="selectAllBox" text="Select All" select="onSelectAll"/>
+                            <ToolbarSpacer/>
+                            <Text id="selectionCount" text="{= ${dfModel>/selectedCount} + ' selected'}" class="ptSelCount"/>
+                        </Toolbar>
+                        <List
+                            id="fieldList"
+                            mode="MultiSelect"
+                            selectionChange="onFieldSelectionChange"
+                            items="{dfModel>/fields}"
+                            noDataText="{i18n>field.noData}"
+                            enableBusyIndicator="false"
+                            showSeparators="None">
+                            <items>
+                                <StandardListItem
+                                    title="{dfModel>fieldName}"
+                                    description="{dfModel>fieldLabel}"
+                                    info="{dfModel>type}"
+                                    infoState="{path: 'dfModel>type', formatter: '.formatTypeState'}"
+                                    type="Active"
+                                    class="ptListItem"/>
+                            </items>
+                        </List>
+                    </content>
+                </Panel>
+
+                <!-- RIGHT: Selection Summary + Import -->
+                <VBox width="auto" height="100%" class="ptDetailArea">
+                    <items>
+                        <HBox class="ptCardGrid" wrap="Wrap" alignItems="Stretch">
+                            <items>
+
+                                <!-- Details card -->
+                                <VBox class="ptCard ptMetaCard">
+                                    <items>
+                                        <HBox class="ptCardHeader" alignItems="Center">
+                                            <items>
+                                                <core:Icon src="sap-icon://detail-view" class="ptCardIcon"/>
+                                                <Title text="{i18n>card.details}" level="H5" class="ptCardTitle"/>
+                                            </items>
+                                        </HBox>
+
+                                        <!-- Empty state -->
+                                        <VBox id="noSelectionBox" visible="{= ${dfModel>/selectedCount} === 0 }" class="ptEmptyState" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <core:Icon src="sap-icon://field-group" class="ptEmptyIcon"/>
+                                                <Title text="{i18n>pod.detail.empty.title}" level="H4" textAlign="Center" class="ptEmptyTitle"/>
+                                                <Text text="{i18n>pod.detail.empty.subtitle}" textAlign="Center" class="ptEmptySubtitle"/>
+                                            </items>
+                                        </VBox>
+
+                                        <!-- Selection summary -->
+                                        <VBox id="fieldDetailBox" visible="{= ${dfModel>/selectedCount} > 0 }" class="ptCardBody">
+                                            <items>
+                                                <HBox class="ptHeroRow" alignItems="Center">
+                                                    <items>
+                                                        <VBox class="ptHeroIcon">
+                                                            <items><core:Icon src="sap-icon://field-group"/></items>
+                                                        </VBox>
+                                                        <VBox class="ptHeroText">
+                                                            <items>
+                                                                <Title text="{= ${dfModel>/selectedCount} + ' Field(s) Selected'}" level="H3" class="ptHeroPodId"/>
+                                                                <Text text="Ready to export as a single JSON file" class="ptHeroDesc"/>
+                                                            </items>
+                                                        </VBox>
+                                                    </items>
+                                                </HBox>
+
+                                                <Label text="Selected Fields" class="ptMetaLabel"/>
+                                                <List id="selectedFieldsList" items="{dfModel>/selectedFields}" showSeparators="None" class="ptOptionsList">
+                                                    <items>
+                                                        <CustomListItem class="ptOptionItem">
+                                                            <content>
+                                                                <HBox alignItems="Center" class="ptOptionRow">
+                                                                    <items>
+                                                                        <ObjectStatus text="{dfModel>fieldName}" state="None" class="ptOptionValue"/>
+                                                                        <Text text="{dfModel>type}" class="ptOptionLabel"/>
+                                                                    </items>
+                                                                </HBox>
+                                                            </content>
+                                                        </CustomListItem>
+                                                    </items>
+                                                </List>
+
+                                                <Button
+                                                    id="exportBtn"
+                                                    text="{= 'Export ' + ${dfModel>/selectedCount} + ' Field(s)'}"
+                                                    icon="sap-icon://download"
+                                                    press="onExportPress"
+                                                    class="ptExportBtn"/>
+                                            </items>
+                                        </VBox>
+                                    </items>
+                                </VBox>
+
+                                <!-- Import card - always visible -->
+                                <VBox class="ptCard ptImportCard" id="importPanel" busyIndicatorDelay="0">
+                                    <items>
+                                        <HBox class="ptCardHeader" alignItems="Center">
+                                            <items>
+                                                <core:Icon src="sap-icon://upload" class="ptCardIcon"/>
+                                                <Title text="{i18n>import.title}" level="H5" class="ptCardTitle"/>
+                                            </items>
+                                        </HBox>
+                                        <VBox class="ptCardBody">
+                                            <items>
+                                                <MessageStrip text="{i18n>import.info}" type="Information" showIcon="true" showCloseButton="false" class="ptImportStrip"/>
+                                                <Label text="{i18n>import.targetPlant}" required="true" class="ptFieldLabel"/>
+                                                <Input id="importPlantInput" value="{dfModel>/importPlant}" placeholder="{i18n>import.targetPlant.placeholder}" width="100%" class="ptFieldInput"/>
+                                                <Label text="{i18n>import.file}" required="true" class="ptFieldLabel"/>
+                                                <HBox alignItems="Center" class="ptFileRow">
+                                                    <items>
+                                                        <Button id="browseBtn" text="{i18n>btn.browse}" icon="sap-icon://open-folder" press="onBrowsePress" class="ptBrowseBtn"/>
+                                                        <Text id="selectedFileText" text="{dfModel>/importFileName}" class="ptFileName" wrapping="false"/>
+                                                    </items>
+                                                </HBox>
+                                                <Button id="importBtn" text="{i18n>btn.import}" icon="sap-icon://upload" enabled="{= !!${dfModel>/importFile} }" press="onImportPress" class="ptImportBtn"/>
+                                            </items>
+                                        </VBox>
+                                    </items>
+                                </VBox>
+
+                            </items>
+                        </HBox>
+                    </items>
+                </VBox>
+
+            </l:HorizontalLayout>
+        </content>
+    </Panel>
+
+</mvc:View>
